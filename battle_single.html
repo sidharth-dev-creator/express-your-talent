@@ -1,107 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Single Player Battle</title>
-
-  <style>
-    body {
-      font-family: Arial;
-      background: linear-gradient(120deg, #1e1e2f, #2b2b55);
-      color: white;
-      text-align: center;
-    }
-
-    select, button {
-      padding: 10px;
-      margin: 10px;
-      font-size: 16px;
-    }
-
-    .box {
-      border: 2px solid white;
-      padding: 15px;
-      margin: 10px auto;
-      width: 300px;
-    }
-
-    button {
-      cursor: pointer;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Single Battle</title>
 </head>
 
 <body>
 
-<h1>🎮 Talent Battle — Single Player</h1>
+<h1>TEST PAGE</h1>
 
-<div class="box">
-  <h2>Your Setup</h2>
+<button onclick="test()">CLICK ME</button>
+<p id="out"></p>
 
-  <select id="playerTalent">
-    <option value="">Select Talent</option>
-    <option>Drumming</option>
-    <option>Singing</option>
-    <option>Coding</option>
-    <option>Art</option>
-    <option>Dance</option>
-    <option>Gaming</option>
-    <option>Magic</option>
-  </select>
-
-  <select id="playerRank">
-    <option value="">Select Rank</option>
-    <option>Beginner</option>
-    <option>Pro</option>
-    <option>Legend</option>
-  </select>
-</div>
-
-<div class="box">
-  <h2>Opponent</h2>
-  <p id="opponentInfo">Not generated yet</p>
-</div>
-
-<button onclick="startBattle()">🔥 START BATTLE</button>
-<button onclick="exitBattle()">❌ EXIT</button>
-
-<h2 id="result"></h2>
-
-<!-- SCRIPT GOES LAST -->
 <script>
-  const talents = ["Drumming", "Singing", "Coding", "Art", "Dance", "Gaming", "Magic"];
-  const ranks = ["Beginner", "Pro", "Legend"];
-
-  function rand(arr) {
-    return arr[Math.floor(Math.random() * arr.length)];
-  }
-
-  function startBattle() {
-    const playerTalent = document.getElementById("playerTalent").value;
-    const playerRank = document.getElementById("playerRank").value;
-
-    if (!playerTalent || !playerRank) {
-      alert("SELECT YOUR TALENT AND RANK FIRST 😡");
-      return;
-    }
-
-    const opponent = {
-      name: "CPU_" + Math.floor(Math.random() * 999),
-      talent: rand(talents),
-      rank: rand(ranks)
-    };
-
-    document.getElementById("opponentInfo").innerHTML =
-      opponent.name + "<br>Talent: " + opponent.talent + "<br>Rank: " + opponent.rank;
-
-    const win = Math.random() > 0.5;
-    document.getElementById("result").innerText =
-      win ? "🔥 YOU WON THE BATTLE!" : "💀 YOU LOST… TRY AGAIN!";
-  }
-
-  function exitBattle() {
-    window.location.href = "index.html";
-  }
+function test() {
+  document.getElementById("out").innerText = "SCRIPT WORKS 🔥";
+}
 </script>
 
 </body>
