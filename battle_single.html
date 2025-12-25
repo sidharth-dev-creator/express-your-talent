@@ -2,19 +2,134 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Single Battle</title>
+<title>Talent Battle – Single Player</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  color: white;
+  text-align: center;
+}
+
+.card {
+  background: rgba(255,255,255,0.1);
+  padding: 25px;
+  margin: 30px auto;
+  width: 90%;
+  max-width: 420px;
+  border-radius: 15px;
+}
+
+select, button {
+  padding: 10px;
+  margin: 10px;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+}
+
+button {
+  background: #00ffff;
+  cursor: pointer;
+}
+
+#result {
+  font-size: 20px;
+  margin-top: 15px;
+}
+</style>
 </head>
 
 <body>
 
-<h1>TEST PAGE</h1>
+<h1>⚔️ Talent Battle</h1>
 
-<button onclick="test()">CLICK ME</button>
-<p id="out"></p>
+<div class="card">
+  <h2>Your Setup</h2>
+
+  <select id="playerTalent">
+    <option value="">Select Talent</option>
+    <option>Drumming</option>
+    <option>Singing</option>
+    <option>Coding</option>
+    <option>Art</option>
+    <option>Dance</option>
+    <option>Gaming</option>
+    <option>Magic</option>
+  </select>
+
+  <br>
+
+  <select id="playerRank">
+    <option value="">Select Rank</option>
+    <option>Beginner</option>
+    <option>Pro</option>
+    <option>Legend</option>
+  </select>
+</div>
+
+<div class="card">
+  <h2>Opponent</h2>
+  <div id="opponentInfo">Not generated yet</div>
+</div>
+
+<div class="card">
+  <button onclick="startBattle()">🔥 START BATTLE</button>
+  <button onclick="resetBattle()">🔄 TRY AGAIN</button>
+  <button onclick="exitBattle()">⬅ EXIT</button>
+
+  <div id="result"></div>
+</div>
 
 <script>
-function test() {
-  document.getElementById("out").innerText = "SCRIPT WORKS 🔥";
+const talents = ["Drumming","Singing","Coding","Art","Dance","Gaming","Magic"];
+const ranks = ["Beginner","Pro","Legend"];
+
+let opponent = null;
+
+function randomFrom(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function generateOpponent() {
+  opponent = {
+    name: "CPU_" + Math.floor(Math.random() * 1000),
+    talent: randomFrom(talents),
+    rank: randomFrom(ranks)
+  };
+
+  document.getElementById("opponentInfo").innerHTML =
+    "<b>" + opponent.name + "</b><br>" +
+    "Talent: " + opponent.talent + "<br>" +
+    "Rank: " + opponent.rank;
+}
+
+generateOpponent();
+
+function startBattle() {
+  const pt = document.getElementById("playerTalent").value;
+  const pr = document.getElementById("playerRank").value;
+
+  if (!pt || !pr) {
+    alert("Select your talent AND rank 😤");
+    return;
+  }
+
+  const win = Math.random() > 0.5;
+
+  document.getElementById("result").innerText =
+    win ? "🔥 YOU WON THE BATTLE!" : "💀 YOU LOST… TRY AGAIN!";
+}
+
+function resetBattle() {
+  document.getElementById("result").innerText = "";
+  generateOpponent();
+}
+
+function exitBattle() {
+  window.location.href = "index.html";
 }
 </script>
 
