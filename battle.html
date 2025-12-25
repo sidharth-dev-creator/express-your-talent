@@ -1,50 +1,127 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="UTF-8">
-  <title>Talent Battle ⚔️</title>
+  <title>Talent Battle</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: radial-gradient(circle at top, #1a1a2e, #0f172a);
+      color: white;
+      text-align: center;
+      min-height: 100vh;
+    }
+
+    h1 {
+      margin-top: 30px;
+    }
+
+    .arena {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.1);
+      padding: 20px;
+      width: 260px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,255,255,0.2);
+    }
+
+    button {
+      margin-top: 30px;
+      padding: 14px 28px;
+      font-size: 18px;
+      border-radius: 12px;
+      border: none;
+      background: #00ffff;
+      cursor: pointer;
+    }
+
+    #result {
+      margin-top: 25px;
+      font-size: 22px;
+      font-weight: bold;
+    }
+  </style>
 </head>
-<body class="battle-bg">
+
+<body>
+
 <h1>🎮 Talent Battle — Single Player</h1>
 
-<div id="player">
-  <h2>👤 You</h2>
-  <p id="playerInfo">Your talent will appear here</p>
+<div class="arena">
+
+  <div class="card">
+    <h2>👤 You</h2>
+    <p id="playerInfo">
+      Talent: Coding<br>
+      Rank: Pro
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>🤖 Opponent</h2>
+    <p id="opponentInfo">Generating opponent...</p>
+  </div>
+
 </div>
 
-<div id="opponent">
-  <h2>🤖 Opponent</h2>
-  <p id="opponentInfo">Loading opponent...</p>
-</div>
-
-<button onclick="startBattle()">⚔️ Start Battle</button>
+<button onclick="startBattle()">⚔️ START BATTLE</button>
 
 <p id="result"></p>
+
 <script>
+  // ===== DATA =====
   const talents = ["Drumming", "Singing", "Coding", "Art", "Dance", "Gaming", "Magic"];
   const ranks = ["Beginner", "Pro", "Legend"];
 
-  function randomFrom(arr) {
+  function rand(arr) {
     return arr[Math.floor(Math.random() * arr.length)];
   }
 
+  function rankPower(rank) {
+    if (rank === "Beginner") return 1;
+    if (rank === "Pro") return 2;
+    if (rank === "Legend") return 3;
+  }
+
+  // ===== CREATE OPPONENT =====
   const opponent = {
-    name: "CPU_" + Math.floor(Math.random() * 999),
-    talent: randomFrom(talents),
-    rank: randomFrom(ranks)
+    name: "CPU_" + Math.floor(Math.random() * 1000),
+    talent: rand(talents),
+    rank: rand(ranks)
   };
 
   document.getElementById("opponentInfo").innerHTML =
-    opponent.name + "<br>Talent: " + opponent.talent + "<br>Rank: " + opponent.rank;
+    "Name: " + opponent.name + "<br>" +
+    "Talent: " + opponent.talent + "<br>" +
+    "Rank: " + opponent.rank;
 
+  // ===== BATTLE LOGIC =====
   function startBattle() {
-    const win = Math.random() > 0.5;
-    document.getElementById("result").innerText =
-      win ? "🔥 YOU WON THE BATTLE!" : "💀 YOU LOST… TRY AGAIN!";
+    const playerRank = "Pro"; // fixed for now
+    const playerPower = rankPower(playerRank);
+    const opponentPower = rankPower(opponent.rank);
+
+    const playerScore = playerPower + Math.random();
+    const opponentScore = opponentPower + Math.random();
+
+    if (playerScore > opponentScore) {
+      document.getElementById("result").innerText = "🔥 YOU WIN THE BATTLE!";
+    } else if (playerScore < opponentScore) {
+      document.getElementById("result").innerText = "💀 YOU LOST… TRY AGAIN!";
+    } else {
+      document.getElementById("result").innerText = "⚖️ IT'S A DRAW!";
+    }
   }
 </script>
-</body>
-  
-</html>
 
+</body>
+</html>
