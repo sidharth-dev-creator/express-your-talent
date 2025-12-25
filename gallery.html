@@ -37,9 +37,11 @@
 
 <h1>🖼️ Talent Gallery</h1>
 <button onclick="goBack()">⬅ Back</button>
-
-<div id="gallery"></div>
-
+  
+  <div id="gallery"></div>
+<button onclick="window.location.href='talents.html'">
+  🎭 Talent Playground
+ </button>
 <script>
   const gallery = document.getElementById("gallery");
   const data = JSON.parse(localStorage.getItem("talents") || "[]");
@@ -62,3 +64,4 @@
 
 </body>
 </html>
+
