@@ -1,8 +1,86 @@
 <!DOCTYPE html>
 <html>
-<body style="background:#0f172a;color:white;text-align:center;font-family:Arial">
-<h1>🎯 Single Player Battle</h1>
-<p>Battle system coming next 🔥</p>
-<button onclick="history.back()">⬅ Back</button>
+<head>
+  <title>Single Player Talent Battle</title>
+</head>
+
+<body style="
+  margin:0;
+  font-family:Arial;
+  background:radial-gradient(circle,#1e3c72,#2a5298);
+  color:white;
+  text-align:center;
+">
+
+<style>
+.box{
+  background:rgba(0,0,0,0.6);
+  margin:80px auto;
+  padding:30px;
+  max-width:600px;
+  border-radius:20px;
+}
+
+.battle{
+  display:flex;
+  justify-content:space-around;
+  margin-top:30px;
+}
+
+.card{
+  background:rgba(255,255,255,0.15);
+  padding:20px;
+  width:40%;
+  border-radius:15px;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.card:hover{
+  transform:scale(1.1);
+  background:rgba(0,255,255,0.4);
+}
+
+.emoji{
+  font-size:60px;
+}
+
+button{
+  margin-top:25px;
+  padding:10px 20px;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+}
+</style>
+
+<div class="box">
+  <h1>⚔️ Talent Battle</h1>
+  <p>Click the better talent</p>
+
+  <div class="battle">
+    <div class="card" onclick="vote('Drumming')">
+      <div class="emoji">🥁</div>
+      <h3>Drumming</h3>
+    </div>
+
+    <div class="card" onclick="vote('Coding')">
+      <div class="emoji">💻</div>
+      <h3>Coding</h3>
+    </div>
+  </div>
+
+  <h2 id="result"></h2>
+
+  <button onclick="history.back()">⬅ Back</button>
+</div>
+
+<script>
+function vote(winner){
+  document.getElementById("result").innerText =
+    "🏆 " + winner + " WINS THIS BATTLE!";
+}
+</script>
+
 </body>
 </html>
