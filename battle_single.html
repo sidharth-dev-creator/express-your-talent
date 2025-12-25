@@ -1,86 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Single Player Talent Battle</title>
+  <meta charset="UTF-8">
+  <title>Single Player Battle</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+<body class="battle-bg">
 
-<body style="
-  margin:0;
-  font-family:Arial;
-  background:radial-gradient(circle,#1e3c72,#2a5298);
-  color:white;
-  text-align:center;
-">
+  <h1>⚔️ Single Player Talent Battle</h1>
+  <p>Pick your talent</p>
 
-<style>
-.box{
-  background:rgba(0,0,0,0.6);
-  margin:80px auto;
-  padding:30px;
-  max-width:600px;
-  border-radius:20px;
-}
-
-.battle{
-  display:flex;
-  justify-content:space-around;
-  margin-top:30px;
-}
-
-.card{
-  background:rgba(255,255,255,0.15);
-  padding:20px;
-  width:40%;
-  border-radius:15px;
-  cursor:pointer;
-  transition:.3s;
-}
-
-.card:hover{
-  transform:scale(1.1);
-  background:rgba(0,255,255,0.4);
-}
-
-.emoji{
-  font-size:60px;
-}
-
-button{
-  margin-top:25px;
-  padding:10px 20px;
-  border-radius:10px;
-  border:none;
-  cursor:pointer;
-}
-</style>
-
-<div class="box">
-  <h1>⚔️ Talent Battle</h1>
-  <p>Click the better talent</p>
-
-  <div class="battle">
-    <div class="card" onclick="vote('Drumming')">
-      <div class="emoji">🥁</div>
-      <h3>Drumming</h3>
-    </div>
-
-    <div class="card" onclick="vote('Coding')">
-      <div class="emoji">💻</div>
-      <h3>Coding</h3>
-    </div>
+  <div class="talent-grid">
+    <button onclick="startBattle('Drumming')">🥁 Drumming</button>
+    <button onclick="startBattle('Coding')">💻 Coding</button>
+    <button onclick="startBattle('Dance')">💃 Dance</button>
+    <button onclick="startBattle('Art')">🎨 Art</button>
+    <button onclick="startBattle('Singing')">🎤 Singing</button>
+    <button onclick="startBattle('Gaming')">🎮 Gaming</button>
+    <button onclick="startBattle('Magic')">✨ Magic</button>
   </div>
 
-  <h2 id="result"></h2>
+  <p id="result"></p>
 
-  <button onclick="history.back()">⬅ Back</button>
-</div>
-
-<script>
-function vote(winner){
-  document.getElementById("result").innerText =
-    "🏆 " + winner + " WINS THIS BATTLE!";
-}
-</script>
+  <script>
+    function startBattle(talent) {
+      const score = Math.floor(Math.random() * 100) + 1;
+      document.getElementById("result").innerHTML =
+        `🔥 You used <b>${talent}</b> and scored <b>${score}</b> points!`;
+    }
+  </script>
 
 </body>
 </html>
