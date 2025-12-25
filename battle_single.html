@@ -1,34 +1,136 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="UTF-8">
-  <title>Single Player Battle</title>
+  <title>Single Player Talent Battle</title>
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: white;
+      text-align: center;
+      min-height: 100vh;
+    }
+
+    h1 {
+      margin-top: 30px;
+    }
+
+    .arena {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 50px;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.12);
+      padding: 25px;
+      width: 280px;
+      border-radius: 16px;
+      box-shadow: 0 0 25px rgba(0,255,255,0.25);
+    }
+
+    button {
+      margin-top: 35px;
+      padding: 14px 30px;
+      font-size: 18px;
+      border-radius: 12px;
+      border: none;
+      background: #00ffff;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #66ffff;
+    }
+
+    #result {
+      margin-top: 30px;
+      font-size: 24px;
+      font-weight: bold;
+    }
+  </style>
 </head>
-<body class="battle-bg">
 
-  <h1>⚔️ Single Player Talent Battle</h1>
-  <p>Pick your talent</p>
+<body>
 
-  <div class="talent-grid">
-    <button onclick="startBattle('Drumming')">🥁 Drumming</button>
-    <button onclick="startBattle('Coding')">💻 Coding</button>
-    <button onclick="startBattle('Dance')">💃 Dance</button>
-    <button onclick="startBattle('Art')">🎨 Art</button>
-    <button onclick="startBattle('Singing')">🎤 Singing</button>
-    <button onclick="startBattle('Gaming')">🎮 Gaming</button>
-    <button onclick="startBattle('Magic')">✨ Magic</button>
+<h1>🎮 Talent Battle — Single Player</h1>
+
+<div class="arena">
+
+  <div class="card">
+    <h2>👤 You</h2>
+    <p id="playerInfo"></p>
   </div>
 
-  <p id="result"></p>
+  <div class="card">
+    <h2>🤖 Opponent</h2>
+    <p id="opponentInfo"></p>
+  </div>
 
-  <script>
-    function startBattle(talent) {
-      const score = Math.floor(Math.random() * 100) + 1;
-      document.getElementById("result").innerHTML =
-        `🔥 You used <b>${talent}</b> and scored <b>${score}</b> points!`;
+</div>
+
+<button onclick="startBattle()">⚔️ START BATTLE</button>
+
+<p id="result"></p>
+
+<script>
+  // ===== DATA =====
+  const talents = ["Drumming", "Singing", "Coding", "Art", "Dance", "Gaming", "Magic"];
+  const ranks = ["Beginner", "Pro", "Legend"];
+
+  function rand(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
+
+  function rankPower(rank) {
+    if (rank === "Beginner") return 1;
+    if (rank === "Pro") return 2;
+    if (rank === "Legend") return 3;
+  }
+
+  // ===== PLAYER =====
+  const player = {
+    name: "You",
+    talent: rand(talents),
+    rank: rand(ranks)
+  };
+
+  document.getElementById("playerInfo").innerHTML =
+    "Talent: " + player.talent + "<br>" +
+    "Rank: " + player.rank;
+
+  // ===== OPPONENT =====
+  const opponent = {
+    name: "CPU_" + Math.floor(Math.random() * 1000),
+    talent: rand(talents),
+    rank: rand(ranks)
+  };
+
+  document.getElementById("opponentInfo").innerHTML =
+    "Name: " + opponent.name + "<br>" +
+    "Talent: " + opponent.talent + "<br>" +
+    "Rank: " + opponent.rank;
+
+  // ===== BATTLE LOGIC =====
+  function startBattle() {
+    const playerScore = rankPower(player.rank) + Math.random();
+    const opponentScore = rankPower(opponent.rank) + Math.random();
+
+    if (playerScore > opponentScore) {
+      document.getElementById("result").innerText = "🔥 YOU WIN!";
+    } else if (playerScore < opponentScore) {
+      document.getElementById("result").innerText = "💀 YOU LOSE!";
+    } else {
+      document.getElementById("result").innerText = "⚖️ DRAW!";
     }
-  </script>
+  }
+</script>
 
 </body>
 </html>
