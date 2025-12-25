@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Talent Playground</title>
+
+  <style>
+    body{
+      margin:0;
+      font-family: Arial;
+      background: linear-gradient(120deg,#ff0080,#7928ca,#2afadf);
+      background-size: 400% 400%;
+      animation: bg 12s infinite;
+      color:white;
+      text-align:center;
+    }
+
+    @keyframes bg{
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
+
+    h1{
+      margin:30px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+      gap:20px;
+      padding:20px;
+      max-width:900px;
+      margin:auto;
+    }
+
+    .card{
+      background: rgba(0,0,0,0.5);
+      padding:20px;
+      border-radius:15px;
+      cursor:pointer;
+      transition: transform .3s;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .card:hover{
+      transform: scale(1.08);
+    }
+
+    .emoji{
+      font-size:50px;
+      transition: .3s;
+    }
+
+    .card:hover .emoji{
+      font-size:65px;
+    }
+
+    select{
+      margin-top:10px;
+      padding:8px;
+      border-radius:8px;
+      border:none;
+    }
+
+    .scene{
+      font-size:13px;
+      margin-top:8px;
+      opacity:.9;
+    }
+
+    button{
+      padding:10px 20px;
+      border-radius:10px;
+      border:none;
+      background:#00ffff;
+      cursor:pointer;
+      margin:20px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>🔥 Talent Playground</h1>
+<p>Hover → Choose rank → Imagine the scene 😎</p>
+
+<div class="grid">
+
+  <div class="card">
+    <div class="emoji">🥁</div>
+    <h3>Drumming</h3>
+    <select onchange="rank(this,'drum')">
+      <option>Beginner</option>
+      <option>Pro</option>
+      <option>Legend</option>
+    </select>
+    <div class="scene" id="drum">Noob drummer learning beats</div>
+  </div>
+
+  <div class="card">
+    <div class="emoji">🎸</div>
+    <h3>Music</h3>
+    <select onchange="rank(this,'music')">
+      <option>Beginner</option>
+      <option>Pro</option>
+      <option>Legend</option>
+    </select>
+    <div class="scene" id="music">Practicing in bedroom</div>
+  </div>
+
+  <div class="card">
+    <div class="emoji">🎮</div>
+    <h3>Gaming</h3>
+    <select onchange="rank(this,'game')">
+      <option>Beginner</option>
+      <option>Pro</option>
+      <option>Legend</option>
+    </select>
+    <div class="scene" id="game">Button smashing noob</div>
+  </div>
+
+  <div class="card">
+    <div class="emoji">💃</div>
+    <h3>Dance</h3>
+    <select onchange="rank(this,'dance')">
+      <option>Beginner</option>
+      <option>Pro</option>
+      <option>Legend</option>
+    </select>
+    <div class="scene" id="dance">Learning steps</div>
+  </div>
+
+  <div class="card">
+    <div class="emoji">🎨</div>
+    <h3>Art</h3>
+    <select onchange="rank(this,'art')">
+      <option>Beginner</option>
+      <option>Pro</option>
+      <option>Legend</option>
+    </select>
+    <div class="scene" id="art">Sketching basics</div>
+  </div>
+
+  <div class="card">
+    <div class="emoji">💻</div>
+    <h3>Coding</h3>
+    <select onchange="rank(this,'code')">
+      <option>Beginner</option>
+      <option>Pro</option>
+      <option>Legend</option>
+    </select>
+    <div class="scene" id="code">Hello World era</div>
+  </div>
+
+  <div class="card">
+    <div class="emoji">🏀</div>
+    <h3>Sports</h3>
+    <select onchange="rank(this,'sport')">
+      <option>Beginner</option>
+      <option>Pro</option>
+      <option>Legend</option>
+    </select>
+    <div class="scene" id="sport">Missed the shot</div>
+  </div>
+
+</div>
+
+<button onclick="goBack()">⬅ Back</button>
+
+<script>
+function rank(sel,id){
+  const level = sel.value;
+  const scenes = {
+    Beginner: "Noob learning basics 😅",
+    Pro: "Crowd watching 👀",
+    Legend: "STADIUM 🔥 band & fans screaming"
+  };
+  document.getElementById(id).innerText = scenes[level];
+}
+
+function goBack(){
+  window.location.href="index.html";
+}
+</script>
+
+</body>
+</html>
