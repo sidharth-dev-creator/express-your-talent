@@ -6,14 +6,45 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="battle-bg">
+<h1>🎮 Talent Battle — Single Player</h1>
 
-  <h1>🔥 Talent Battle 🔥</h1>
-  <p>Choose Single Player or Multiplayer</p>
+<div id="player">
+  <h2>👤 You</h2>
+  <p id="playerInfo">Your talent will appear here</p>
+</div>
 
-  <div class="battle-menu">
-    <a href="battle_single.html" class="battle-btn">🎮 Single Player</a>
-    <a href="battle_multi.html" class="battle-btn">👥 Multiplayer</a>
-  </div>
+<div id="opponent">
+  <h2>🤖 Opponent</h2>
+  <p id="opponentInfo">Loading opponent...</p>
+</div>
 
+<button onclick="startBattle()">⚔️ Start Battle</button>
+
+<p id="result"></p>
+<script>
+  const talents = ["Drumming", "Singing", "Coding", "Art", "Dance", "Gaming", "Magic"];
+  const ranks = ["Beginner", "Pro", "Legend"];
+
+  function randomFrom(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
+
+  const opponent = {
+    name: "CPU_" + Math.floor(Math.random() * 999),
+    talent: randomFrom(talents),
+    rank: randomFrom(ranks)
+  };
+
+  document.getElementById("opponentInfo").innerHTML =
+    opponent.name + "<br>Talent: " + opponent.talent + "<br>Rank: " + opponent.rank;
+
+  function startBattle() {
+    const win = Math.random() > 0.5;
+    document.getElementById("result").innerText =
+      win ? "🔥 YOU WON THE BATTLE!" : "💀 YOU LOST… TRY AGAIN!";
+  }
+</script>
 </body>
+  
 </html>
+
