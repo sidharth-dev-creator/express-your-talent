@@ -1,73 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Talent Battle</title>
+  <meta charset="UTF-8">
+  <title>Talent Battle ⚔️</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+<body class="battle-bg">
 
-<body style="
-  margin:0;
-  font-family:Arial;
-  background:linear-gradient(120deg,#ff0080,#7928ca,#2afadf);
-  background-size:400% 400%;
-  animation:bg 12s infinite;
-  color:white;
-  text-align:center;
-">
+  <h1>🔥 Talent Battle 🔥</h1>
+  <p>Choose Single Player or Multiplayer</p>
 
-<style>
-@keyframes bg{
-  0%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-  100%{background-position:0% 50%}
-}
-
-.box{
-  background:rgba(0,0,0,0.55);
-  padding:30px;
-  width:90%;
-  max-width:420px;
-  margin:120px auto;
-  border-radius:18px;
-}
-
-button{
-  padding:15px 30px;
-  font-size:18px;
-  margin:12px;
-  border-radius:14px;
-  border:none;
-  cursor:pointer;
-  font-weight:bold;
-}
-
-.single{background:#00ffff}
-.multi{background:#ff00ff}
-.back{background:#ffffff}
-</style>
-
-<div class="box">
-  <h1>⚔️ Talent Battle</h1>
-  <p>Choose your battle mode</p>
-
-  <button class="single" onclick="single()">🎯 Single Player</button><br>
-  <button class="multi" onclick="multi()">👥 Multiplayer</button><br><br>
-
-  <button class="back" onclick="goBack()">⬅ Back</button>
-</div>
-
-<script>
-function single(){
-  window.location.href = "battle_single.html";
-}
-
-function multi(){
-  window.location.href = "battle_multi.html";
-}
-
-function goBack(){
-  window.location.href = "index.html";
-}
-</script>
+  <div class="battle-menu">
+    <a href="battle_single.html" class="battle-btn">🎮 Single Player</a>
+    <a href="battle_multi.html" class="battle-btn">👥 Multiplayer</a>
+  </div>
 
 </body>
 </html>
