@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Talent Gallery</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial;
+      background: #0f172a;
+      color: white;
+      text-align: center;
+    }
+
+    h1 { margin: 30px; }
+
+    .entry {
+      background: rgba(255,255,255,0.1);
+      margin: 15px auto;
+      padding: 15px;
+      width: 85%;
+      max-width: 600px;
+      border-radius: 12px;
+    }
+
+    button {
+      padding: 10px 20px;
+      border-radius: 10px;
+      border: none;
+      background: #00ffff;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>🖼️ Talent Gallery</h1>
+<button onclick="goBack()">⬅ Back</button>
+
+<div id="gallery"></div>
+
+<script>
+  const gallery = document.getElementById("gallery");
+  const data = JSON.parse(localStorage.getItem("talents") || "[]");
+
+  if (data.length === 0) {
+    gallery.innerHTML = "<p>No submissions yet 😢</p>";
+  } else {
+    data.forEach(t => {
+      const div = document.createElement("div");
+      div.className = "entry";
+      div.innerHTML = `<b>${t.name}</b> — ${t.talent}<br>${t.desc}`;
+      gallery.appendChild(div);
+    });
+  }
+
+  function goBack() {
+    window.location.href = "index.html";
+  }
+</script>
+
+</body>
+</html>
